@@ -5,7 +5,7 @@
   "bin": {
     "atcoder": "./bin/run"
   },
-  "bugs": "https://github.com/arizuk/atcoder/issues",
+  "bugs": "https://github.com/arizuk/atcoder-cli/issues",
   "dependencies": {
     "@oclif/command": "^1.5.6",
     "@oclif/config": "^1.9.0",
@@ -37,7 +37,7 @@
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json"
   ],
-  "homepage": "https://github.com/arizuk/atcoder",
+  "homepage": "https://github.com/arizuk/atcoder-cli",
   "keywords": [
     "oclif"
   ],
@@ -50,7 +50,7 @@
       "@oclif/plugin-help"
     ]
   },
-  "repository": "arizuk/atcoder",
+  "repository": "arizuk/atcoder-cli",
   "scripts": {
     "postpack": "rm -f oclif.manifest.json",
     "posttest": "tslint -p . -t stylish",

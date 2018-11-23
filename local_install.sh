@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -e
+mkdir -p dist
 npm pack
-npm install -g $(ls atcoder-*.tgz)
-rm atcoder-*.tgz
+mv atcoder-*.tgz dist/
+npm install -g $(ls dist/atcoder-*.tgz|first)

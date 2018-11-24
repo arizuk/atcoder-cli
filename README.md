@@ -1,5 +1,5 @@
 # atcoder-cli
-atcoder-cli is a my utility tool to support daily practice in the atcoder.
+atcoder-cli is a my utility tool to support daily practice in atcoder.
 
 # Usage
 <!-- usage -->

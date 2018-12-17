@@ -24,7 +24,7 @@ export default class Login extends Command {
   static description = 'parse and save testcases from given problem resource'
 
   static examples = [
-    `$ atcoder download_testcases https://beta.atcoder.jp/contests/agc020/tasks/agc020_a`
+    `$ atcoder download_testcases https://atcoder.jp/contests/agc020/tasks/agc020_a`
   ]
 
   static args = [

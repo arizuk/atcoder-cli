@@ -14,7 +14,7 @@ Currently only beta.atcoder.jp is supported as the url.
     {
       name: 'url',
       required: false,
-      default: 'https://beta.atcoder.jp/login',
+      default: 'https://atcoder.jp/login',
     }
   ]
 

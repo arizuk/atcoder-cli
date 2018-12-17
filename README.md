@@ -33,7 +33,7 @@ ARGUMENTS
   URL_OR_FILE  A problem page url or a local file path
 
 EXAMPLE
-  $ atcoder download_testcases https://beta.atcoder.jp/contests/agc020/tasks/agc020_a
+  $ atcoder download_testcases https://atcoder.jp/contests/agc020/tasks/agc020_a
 ```
 
 _See code: [src/commands/download_testcases.ts](https://github.com/arizuk/atcoder-cli/blob/v0.0.0/src/commands/download_testcases.ts)_

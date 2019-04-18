@@ -1,7 +1,17 @@
 import fs = require('fs')
 import cheerio = require('cheerio')
 
+interface TestCase {
+  type: string
+  number: string
+  content: string
+}
+
 export function parseBodyAndSaveTestcases(body: string) {
+  parseHTMLBody(body, saveTestCase)
+}
+
+export function parseHTMLBody(body: string, cb: (testCase: TestCase) => void) {
   const $ = cheerio.load(body)
 
   const title = $('title').text()
@@ -17,16 +27,18 @@ export function parseBodyAndSaveTestcases(body: string) {
   $('#task-statement .part').each(function(this: any, i: Number) {
     const $el = $(this)
     const title = $el.find('h3').text()
-    const match = title.match(/Sample\s+(Input|Output)\s+(\d+)/i)
+    const match = title.match(/(入力例|出力例)\s+(\d+)/i)
     if (!match) return
 
-    const type = match[1].toLowerCase()
+    const type = match[1] === "入力例" ? 'input' : 'output'
     const number = match[2]
     const content = $el.find('pre').text().trim() + "\n"
-    const filename = `${type}${number}`
-
-    console.log(`* Write ${filename}`);
-
-    fs.writeFileSync(filename, content)
+    cb({ type, number, content })
   })
+}
+
+export function saveTestCase(testCase: TestCase) {
+  const filename = `${testCase.type}${testCase.number}`
+  console.log(`* Write ${filename}`);
+  fs.writeFileSync(filename, testCase.content)
 }

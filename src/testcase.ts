@@ -17,17 +17,16 @@ export function parseBodyAndSaveTestCases(body: string) {
 }
 
 function parseHTMLBody(body: string, cb: (testCase: TestCase) => void) {
-  const $ = cheerio.load(body)
-
-  const title = $('title').text()
-  console.log(`* Title: ${title}`)
-
   const match = body.match(/userScreenName\s*=\s*"(.*)"/)
   if (match) {
     console.log(`* Login: ${match[1]}`)
   } else {
     console.log('* Login: Guest access')
   }
+
+  const $ = cheerio.load(body)
+  const title = $('title').text()
+  console.log(`* Problem title: ${title}`)
 
   $('#task-statement .part').each(function (this: any) {
     const $el = $(this)

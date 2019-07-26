@@ -1,10 +1,10 @@
-import got = require('got')
 import cheerio = require('cheerio')
-import path = require('path')
 import fs = require('fs')
-import {CookieJar, Cookie} from 'tough-cookie'
+import got = require('got')
+import path = require('path')
+import {CookieJar} from 'tough-cookie'
 
-const COOKIE_STORE_PATH = path.join(process.env.HOME as string, ".atcoder.json")
+const COOKIE_STORE_PATH = path.join(process.env.HOME as string, '.atcoder.json')
 
 function parseCsrfToken(body: string): string {
   const $ = cheerio.load(body)
@@ -43,14 +43,14 @@ function getLoginCredentials(): LoginCredentials {
     throw new Error(message)
   }
 
-  return { username, password }
+  return {username, password}
 }
 
 export async function login(loginUrl: string) {
   const cookieJar = new CookieJar()
 
-  const res = await got.get(loginUrl, { cookieJar })
-  if (res.statusCode != 200) {
+  const res = await got.get(loginUrl, {cookieJar})
+  if (res.statusCode !== 200) {
     throw new Error(`The server returns ${res.statusCode}`)
   }
 
@@ -68,12 +68,12 @@ export async function login(loginUrl: string) {
     throwHttpErrors: false,
     cookieJar
   })
-  .then((postResponse: any) => {
-    if (postResponse.statusCode == 302) {
+    .then((postResponse: any) => {
+      if (postResponse.statusCode === 302) {
       console.log('Login success!')
       saveSession(cookieJar, loginUrl)
     } else {
       throw new Error(`Login failed! body=${JSON.stringify(formBody)}`)
     }
-  })
+    })
 }

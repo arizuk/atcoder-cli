@@ -1,4 +1,5 @@
 import {Command, flags} from '@oclif/command'
+
 import {login} from '../login'
 
 export default class Login extends Command {
@@ -7,7 +8,7 @@ Currently only beta.atcoder.jp is supported as the url.
 `
 
   static examples = [
-    `$ atcoder login`
+    '$ atcoder login'
   ]
 
   static args = [

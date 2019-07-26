@@ -1,8 +1,9 @@
 import {Command, flags} from '@oclif/command'
-import {parseBodyAndSaveTestcases} from '../testcase'
-import {restoreCookieJar} from '../login'
-import got = require('got')
 import fs = require('fs')
+import got = require('got')
+
+import {restoreCookieJar} from '../login'
+import {parseBodyAndSaveTestcases} from '../testcase'
 
 function handleLocalFile(path: string) {
   const body = fs.readFileSync(path, 'utf8')
@@ -12,7 +13,7 @@ function handleLocalFile(path: string) {
 async function handleUrl(url: string) {
   console.log(`Download testcases from ${url}.`)
   const cookieJar = restoreCookieJar()
-  const res = await got(url, {cookieJar});
+  const res = await got(url, {cookieJar})
   if (res.statusCode == 200) {
     parseBodyAndSaveTestcases(res.body)
   } else {
@@ -24,14 +25,14 @@ export default class Login extends Command {
   static description = 'parse and save testcases from given problem resource'
 
   static examples = [
-    `$ atcoder download_testcases https://atcoder.jp/contests/agc020/tasks/agc020_a`
+    '$ atcoder download_testcases https://atcoder.jp/contests/agc020/tasks/agc020_a'
   ]
 
   static args = [
     {
       name: 'url_or_file',
       required: true,
-      description: "A problem page url or a local file path"
+      description: 'A problem page url or a local file path'
     }
   ]
 

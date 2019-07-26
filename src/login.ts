@@ -54,10 +54,11 @@ export async function login(loginUrl: string) {
     throw new Error(`The server returns ${res.statusCode}`)
   }
 
+  const loginCredential = getLoginCredentials()
   const csrfToken = parseCsrfToken(res.body)
   const formBody = {
     csrf_token: csrfToken,
-    ...getLoginCredentials()
+    ...loginCredential
   }
 
   // XXX. Following code dit not work..
@@ -70,10 +71,10 @@ export async function login(loginUrl: string) {
   })
     .then((postResponse: any) => {
       if (postResponse.statusCode === 302) {
-      console.log('Login success!')
-      saveSession(cookieJar, loginUrl)
-    } else {
-      throw new Error(`Login failed! body=${JSON.stringify(formBody)}`)
-    }
+        saveSession(cookieJar, loginUrl)
+        console.log(`Hi ${loginCredential.username}, You have logged in successfully.`)
+      } else {
+        throw new Error(`Login failed! body=${JSON.stringify(formBody)}`)
+      }
     })
 }

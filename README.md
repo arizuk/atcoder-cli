@@ -8,7 +8,7 @@ $ npm install -g atcoder
 $ atcoder COMMAND
 running command...
 $ atcoder (-v|--version|version)
-atcoder/0.0.0 linux-x64 node-v10.8.0
+atcoder/0.0.0 darwin-x64 node-v12.4.0
 $ atcoder --help [COMMAND]
 USAGE
   $ atcoder COMMAND
@@ -23,7 +23,7 @@ USAGE
 
 ## `atcoder download_testcases URL_OR_FILE`
 
-parse and save testcases from given problem resource
+extarct and save the test cases from a given problem url
 
 ```
 USAGE
@@ -57,14 +57,11 @@ _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.1.4
 
 ## `atcoder login [URL]`
 
-login to specified url.
+login to AtCoder website.
 
 ```
 USAGE
   $ atcoder login [URL]
-
-DESCRIPTION
-  Currently only beta.atcoder.jp is supported as the url.
 
 EXAMPLE
   $ atcoder login

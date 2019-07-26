@@ -1,4 +1,4 @@
-import {Command, flags} from '@oclif/command'
+import {Command} from '@oclif/command'
 import fs = require('fs')
 import got = require('got')
 
@@ -22,7 +22,7 @@ async function handleUrl(url: string) {
 }
 
 export default class Login extends Command {
-  static description = 'parse and save testcases from given problem resource'
+  static description = 'extarct and save the test cases from a given problem url'
 
   static examples = [
     '$ atcoder download_testcases https://atcoder.jp/contests/agc020/tasks/agc020_a'
@@ -37,7 +37,7 @@ export default class Login extends Command {
   ]
 
   async run() {
-    const {args, flags} = this.parse(Login)
+    const {args} = this.parse(Login)
     const urlOrFile = args.url_or_file
     if (urlOrFile.match(/^http/)) {
       await handleUrl(urlOrFile)

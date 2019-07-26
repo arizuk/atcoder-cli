@@ -1,10 +1,9 @@
-import {Command, flags} from '@oclif/command'
+import {Command} from '@oclif/command'
 
 import {login} from '../login'
 
 export default class Login extends Command {
-  static description = `login to specified url.
-Currently only beta.atcoder.jp is supported as the url.
+  static description = `login to AtCoder website.
 `
 
   static examples = [
@@ -20,7 +19,7 @@ Currently only beta.atcoder.jp is supported as the url.
   ]
 
   async run() {
-    const {args, flags} = this.parse(Login)
+    const {args} = this.parse(Login)
 
     const url = args.url
     this.log(`Login to ${url}`)

@@ -1,5 +1,6 @@
 import {Command} from '@oclif/command'
 
+import {ATCODER_URL} from '../consts'
 import {login} from '../login'
 
 export default class Login extends Command {
@@ -14,7 +15,7 @@ export default class Login extends Command {
     {
       name: 'url',
       required: false,
-      default: 'https://atcoder.jp/login',
+      default: `${ATCODER_URL}/login`,
     }
   ]
 
@@ -22,7 +23,7 @@ export default class Login extends Command {
     const {args} = this.parse(Login)
 
     const url = args.url
-    this.log(`Login to ${url}`)
+    this.log(`Trying to login to ${url}.`)
     await login(url)
   }
 }

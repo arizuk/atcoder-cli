@@ -1,17 +1,22 @@
 import cheerio = require('cheerio')
 import fs = require('fs')
 
+const enum ContentType {
+  Input = 'input',
+  Output = 'output'
+}
+
 interface TestCase {
-  type: string
+  type: ContentType
   number: string
   content: string
 }
 
-export function parseBodyAndSaveTestcases(body: string) {
+export function parseBodyAndSaveTestCases(body: string) {
   parseHTMLBody(body, saveTestCase)
 }
 
-export function parseHTMLBody(body: string, cb: (testCase: TestCase) => void) {
+function parseHTMLBody(body: string, cb: (testCase: TestCase) => void) {
   const $ = cheerio.load(body)
 
   const title = $('title').text()
@@ -24,13 +29,13 @@ export function parseHTMLBody(body: string, cb: (testCase: TestCase) => void) {
     console.log('* Login: Guest access')
   }
 
-  $('#task-statement .part').each(function (this: any, i: Number) {
+  $('#task-statement .part').each(function (this: any) {
     const $el = $(this)
     const title = $el.find('h3').text()
     const match = title.match(/(入力例|出力例)\s+(\d+)/i)
     if (!match) return
 
-    const type = match[1] === '入力例' ? 'input' : 'output'
+    const type = match[1] === '入力例' ? ContentType.Input : ContentType.Output
     const number = match[2]
     const content = $el.find('pre').text().trim() + '\n'
     cb({type, number, content})

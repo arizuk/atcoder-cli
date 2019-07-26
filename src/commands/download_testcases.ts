@@ -3,19 +3,19 @@ import fs = require('fs')
 import got = require('got')
 
 import {restoreCookieJar} from '../login'
-import {parseBodyAndSaveTestcases} from '../testcase'
+import {parseBodyAndSaveTestCases} from '../testcase'
 
 function handleLocalFile(path: string) {
   const body = fs.readFileSync(path, 'utf8')
-  parseBodyAndSaveTestcases(body)
+  parseBodyAndSaveTestCases(body)
 }
 
 async function handleUrl(url: string) {
   console.log(`Download testcases from ${url}.`)
   const cookieJar = restoreCookieJar()
   const res = await got(url, {cookieJar})
-  if (res.statusCode == 200) {
-    parseBodyAndSaveTestcases(res.body)
+  if (res.statusCode === 200) {
+    parseBodyAndSaveTestCases(res.body)
   } else {
     throw new Error(`The server returns ${res.statusCode}`)
   }

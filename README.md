@@ -20,6 +20,7 @@ USAGE
 * [`atcoder download_testcases URL_OR_FILE`](#atcoder-download-testcases-url-or-file)
 * [`atcoder help [COMMAND]`](#atcoder-help-command)
 * [`atcoder login [URL]`](#atcoder-login-url)
+* [`atcoder session`](#atcoder-session)
 
 ## `atcoder download_testcases URL_OR_FILE`
 
@@ -68,4 +69,18 @@ EXAMPLE
 ```
 
 _See code: [src/commands/login.ts](https://github.com/arizuk/atcoder-cli/blob/v0.0.0/src/commands/login.ts)_
+
+## `atcoder session`
+
+show current session status
+
+```
+USAGE
+  $ atcoder session
+
+EXAMPLE
+  $ atcoder session
+```
+
+_See code: [src/commands/session.ts](https://github.com/arizuk/atcoder-cli/blob/v0.0.0/src/commands/session.ts)_
 <!-- commandsstop -->
